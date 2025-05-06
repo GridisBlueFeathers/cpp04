@@ -6,7 +6,7 @@
 #    By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/06 13:00:35 by svereten          #+#    #+#              #
-#    Updated: 2025/05/06 14:38:58 by svereten         ###   ########.fr        #
+#    Updated: 2025/05/06 14:43:50 by svereten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = ex00
@@ -50,6 +50,7 @@ ${OBJ_DIRS}:
 clean:
 	rm -rf ${OBJ_DIR}
 	rm -rf compile_commands.json
+	rm -rf .cache
 
 fclean: clean
 	rm -rf ${NAME}
