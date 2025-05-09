@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ICharacter.hpp                                     :+:      :+:    :+:   */
+/*   Floor.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 12:30:33 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/09 17:05:22 by svereten         ###   ########.fr       */
+/*   Created: 2025/05/09 18:02:46 by svereten          #+#    #+#             */
+/*   Updated: 2025/05/09 18:16:29 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef ICHARACTER_HPP
-# define ICHARACTER_HPP
+#ifndef FLOOR_HPP
+# define FLOOR_HPP
 
-# include <string>
+#include "AMateria.hpp"
+#include <cstddef>
 
-class AMateria;
-
-class ICharacter {
+class Floor {
 public:
-	virtual ~ICharacter() {}
+	~Floor();
+	static Floor	*get();
+	void			add(AMateria *aMateria);
+	void			clean();
 
-	virtual std::string const	&getName() const = 0;
-	virtual void				equip(AMateria *m) = 0;
-	virtual void				unequip(int idx) = 0;
-	virtual void				use(int idx, ICharacter &target) = 0;
+private:
+	Floor();
+	Floor(const Floor &other);
+	Floor &operator=(const Floor &other);
+
+	static Floor	*_floor;
+	AMateria		**_materias;
+	size_t			_size;
+	
 };
 
-#endif // !ICHARACTER_HPP
+#endif // !FLOOR_HPP

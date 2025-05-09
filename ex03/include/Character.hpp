@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
+/*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 12:34:18 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/09 16:28:18 by svereten         ###   ########.fr       */
+/*   Created: 2025/05/09 16:41:01 by svereten          #+#    #+#             */
+/*   Updated: 2025/05/09 17:04:12 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef MATERIASOURCE_HPP
-# define MATERIASOURCE_HPP
+#ifndef CHARACTER_HPP
+# define CHARACTER_HPP
 
-# include "IMateriaSource.hpp"
+# include <string>
 # include "AMateria.hpp"
 
-class MateriaSource: public IMateriaSource {
+class Character: public ICharacter {
 public:
-	MateriaSource();
-	~MateriaSource();
-	MateriaSource(const MateriaSource &materiaSource);
+	Character();
+	~Character();
+	Character(const Character &other);
+	Character(const std::string &name);
 
-	MateriaSource	&operator=(const MateriaSource &materiaSource);
+	Character &operator=(const Character &other);
 
-	void			learnMateria(AMateria *aMateria);
-	AMateria		*createMateria(std::string const &type);
+	std::string const	&getName() const;
+	void				equip(AMateria *aMateria);
+	void				unequip(int idx);
+	void				use(int idx, ICharacter &target);
 
 private:
+	std::string	_name;
 	AMateria	*_materias[4];
 	
-	void			deepCopyMaterias(const MateriaSource &materiaSource);
 };
 
-#endif // !MATERIASOURCE_HPP
+#endif // !CHARACTER_HPP
+

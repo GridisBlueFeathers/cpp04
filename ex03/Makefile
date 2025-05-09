@@ -6,7 +6,7 @@
 #    By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 12:13:43 by svereten          #+#    #+#              #
-#    Updated: 2025/05/09 13:39:25 by svereten         ###   ########.fr        #
+#    Updated: 2025/05/09 18:20:48 by svereten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = ex03
@@ -23,6 +23,10 @@ OBJ_DIR = obj
 FILES = main \
 		MateriaSource \
 		AMateria \
+		Ice \
+		Cure \
+		Character \
+		Floor \
 
 OBJS = ${FILES:%=${OBJ_DIR}/%.o}
 DEPS = ${FILES:%=${OBJ_DIR}/%.d}
@@ -57,6 +61,6 @@ run: ${NAME}
 	./${NAME} ${ARGS}
 
 valgrind: ${NAME}
-	valgrind ./${NAME} ${ARGS}
+	valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS}
 
 .PHONY: all clean fclean re run valgrind

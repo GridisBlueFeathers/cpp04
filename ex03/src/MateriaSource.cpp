@@ -6,18 +6,24 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 12:52:50 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/09 13:29:18 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:31:02 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "MateriaSource.hpp"
 #include <iostream>
 
-MateriaSource::MateriaSource() {
+MateriaSource::MateriaSource(): _materias() {
 	if (DEBUG)
 		std::cerr << "MateriaSource was created (default)\n";
 }
 
 MateriaSource::~MateriaSource() {
+	int	i = 0;
+
+	while (i < 4) {
+		delete _materias[i];
+		i++;
+	}
 	if (DEBUG)
 		std::cerr << "MateriaSource was destroyed\n";
 }
@@ -42,7 +48,7 @@ void	MateriaSource::learnMateria(AMateria *aMateria) {
 
 	while (i < 4) {
 		if (!_materias[i]) {
-			_materias[i] = aMateria->clone();
+			_materias[i] = aMateria;
 			break ;
 		}
 		i++;
