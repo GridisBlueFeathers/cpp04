@@ -1,6 +1,8 @@
 ex0*
+tests_bin
 
 obj
+test
 
 .cache
 compile_commands.json

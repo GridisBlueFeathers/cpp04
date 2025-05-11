@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:15:01 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/09 18:29:12 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/11 17:35:28 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Character.hpp"
@@ -20,6 +20,13 @@
 # define DEBUG 1
 #endif // !DEBUG
 
+void	testAMateria() {
+	std::cout << "-- AMateria tests --\n";
+	// Amateria cannot be instantiated by itself 
+	//AMateria materia;
+
+}
+
 int	main() {
 	IMateriaSource	*src = new MateriaSource();
 
@@ -30,8 +37,10 @@ int	main() {
 
 	AMateria* tmp;
 	tmp = src->createMateria("ice");
+	std::cout << tmp->getType() << std::endl;
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
+	std::cout << tmp->getType() << std::endl;
 	me->equip(tmp);
 
 	ICharacter* bob = new Character("bob");
