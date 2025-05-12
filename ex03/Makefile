@@ -6,8 +6,11 @@
 #    By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 12:13:43 by svereten          #+#    #+#              #
-#    Updated: 2025/05/12 19:09:40 by svereten         ###   ########.fr        #
+#    Updated: 2025/05/12 19:49:33 by svereten         ###   ########.fr        #
 #                                                                              #
+# **************************************************************************** #
+# **************************************************************************** #
+#	Default variables
 # **************************************************************************** #
 NAME = ex03
 
@@ -33,27 +36,21 @@ DEPS = ${FILES:%=${OBJ_DIR}/%.d}
 
 OBJ_DIRS = ${sort ${dir ${OBJS}}}
 
-#TESTS = ${FILES:%=${TEST_DIR}/%}
-TESTS = test/AMateria \
-		test/Character \
-		test/Cure \
-		test/Floor \
-		test/Ice \
-		test/MateriaSource \
+# **************************************************************************** #
+#	Tests variables
+# **************************************************************************** #
 
-#TEST_OBJS = ${FILES:%=${OBJ_DIR}/test%.o}
-TEST_OBJS = obj/testAMateria.o \
-			obj/testCharacter.o \
-			obj/testCure.o \
-			obj/testFloor.o \
-			obj/testIce.o \
-			obj/testMateriaSource.o \
-			${filter-out obj/main.o, ${OBJS}}
+TESTS = ${FILES:%=${TEST_DIR}/%}
+
+TEST_OBJS = ${FILES:%=${OBJ_DIR}/test%.o}
 
 TEST_DIRS = ${sort ${dir ${TESTS}}}
 
-
 DEBUG = 0
+
+# **************************************************************************** #
+#	Default targets
+# **************************************************************************** #
 
 all: ${NAME}
 
@@ -68,17 +65,21 @@ ${OBJ_DIRS}:
 
 -include ${DEPS}
 
-tests: test/bin
-	valgrind ./test/bin
+# **************************************************************************** #
+#	Tests targets
+# **************************************************************************** #
 
-test/bin: ${TEST_OBJS}
+tests: test/bin
+	valgrind --leak-check=full --show-leak-kinds=all ./$<
+
+test/bin: ${TEST_OBJS} ${OBJS}
 	mkdir -p test
 	${CXX} ${CXXFLAGS} $^ -o test/bin -I/usr/src/googletest/googletest/include \
     -L/usr/lib \
     -lgtest -lgtest_main -pthread
 
 test%: ${TEST_DIR}/%
-	valgrind ./$<
+	valgrind --leak-check=full --show-leak-kinds=all ./$<
 
 ${TEST_DIR}/%: ${OBJ_DIR}/test%.o ${OBJS} | ${TEST_DIRS}
 	${CXX} ${CXXFLAGS} $^ -o $@ -I/usr/src/googletest/googletest/include \
@@ -88,8 +89,9 @@ ${TEST_DIR}/%: ${OBJ_DIR}/test%.o ${OBJS} | ${TEST_DIRS}
 ${TEST_DIRS}:
 	mkdir -p $@
 
-print:
-	echo ${TEST_OBJS}
+# **************************************************************************** #
+#	Default rules
+# **************************************************************************** #
 
 clean:
 	rm -rf ${OBJ_DIR}
@@ -101,10 +103,14 @@ fclean: clean
 
 re: fclean all
 
+# **************************************************************************** #
+#	Run rules
+# **************************************************************************** #
+
 run: ${NAME}
 	./${NAME} ${ARGS}
 
 valgrind: ${NAME}
 	valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS}
 
-.PHONY: all clean fclean re run valgrind
+.PHONY: all clean fclean re run valgrind tests
