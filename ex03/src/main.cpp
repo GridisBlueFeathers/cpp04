@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:15:01 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/11 17:35:28 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:08:50 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Character.hpp"
@@ -39,6 +39,12 @@ int	main() {
 	tmp = src->createMateria("ice");
 	std::cout << tmp->getType() << std::endl;
 	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	std::cout << tmp->getType() << std::endl;
+	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	std::cout << tmp->getType() << std::endl;
+	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	std::cout << tmp->getType() << std::endl;
 	me->equip(tmp);
@@ -47,14 +53,13 @@ int	main() {
 
 	me->use(0, *bob);
 	me->use(1, *bob);
+	me->use(2, *bob);
+	me->use(3, *bob);
 
 	me->unequip(0);
 	me->unequip(1);
 
-	Floor	*floor = Floor::get();
-
 	delete src;
 	delete me;
 	delete bob;
-	delete floor;
 }

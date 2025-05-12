@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:33:41 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/09 16:39:51 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/12 13:26:36 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Cure.hpp"
@@ -43,5 +43,5 @@ AMateria	*Cure::clone() const {
 
 void	Cure::use(ICharacter &target) {
 	std::cout << "* heals " << target.getName()
-		<< "'s wounds\n";
+		<< "’s wounds *\n";
 }

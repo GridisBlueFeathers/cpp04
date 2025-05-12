@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:41:01 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/09 17:04:12 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/12 15:25:02 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CHARACTER_HPP
@@ -32,7 +32,6 @@ public:
 private:
 	std::string	_name;
 	AMateria	*_materias[4];
-	
 };
 
 #endif // !CHARACTER_HPP

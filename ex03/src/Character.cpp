@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:46:34 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/09 18:23:19 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:13:18 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Character.hpp"
@@ -68,14 +68,15 @@ void	Character::equip(AMateria *aMateria) {
 	}
 }
 
-// Oof size: Large
+// Oof size: Large *edit: not so large anymore
 void	Character::unequip(int idx) {
-	Floor	*floor = Floor::get();
-	floor->add(_materias[idx]);
+	if (idx < 0 || idx > 3)
+		return ;
+	_materias[idx]->getFloor().add(_materias[idx]);
 	_materias[idx] = NULL;
 }
 
 void	Character::use(int idx, ICharacter &target) {
-	if (_materias[idx])
+	if (idx >= 0 && idx < 4 && _materias[idx])
 		_materias[idx]->use(target);
 }

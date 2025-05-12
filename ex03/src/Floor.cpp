@@ -6,10 +6,11 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 18:06:11 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/09 18:31:59 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:05:23 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Floor.hpp"
+#include "AMateria.hpp"
 #include <iostream>
 
 Floor::Floor(): _materias(), _size(0) {
@@ -30,12 +31,6 @@ Floor::~Floor() {
 		std::cerr << "Floor was destroyed\n";
 }
 
-Floor	*Floor::get() {
-	if (!_floor)
-		_floor = new Floor();
-	return (_floor);
-}
-
 void	Floor::add(AMateria *aMateria) {
 	AMateria	**res = new AMateria *[_size + 1];
 	size_t		i = 0;
@@ -49,9 +44,3 @@ void	Floor::add(AMateria *aMateria) {
 	_materias = res;
 	_size++;
 }
-
-void	Floor::clean() {
-	delete [] _materias;
-}
-
-Floor *Floor ::_floor = NULL;
