@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:46:34 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/12 16:13:18 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:55:38 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Character.hpp"
@@ -32,6 +32,13 @@ Character::~Character() {
 }
 
 Character::Character(const Character &other): _name(other._name), _materias() {
+	int	i = 0;
+
+	while (i < 4) {
+		if (other._materias[i])
+			_materias[i] = other._materias[i]->clone();
+		i++;
+	}
 	if (DEBUG)
 		std::cerr << "Character by the name " << _name
 			<< " was constructed (copy)\n";
@@ -44,8 +51,19 @@ Character::Character(const std::string &name): _name(name), _materias() {
 }
 
 Character	&Character::operator=(const Character &other) {
+	int	i = 0;
+
 	if (this != &other) {
 		_name = other._name;
+		while (i < 4) {
+			if (_materias[i]) {
+				delete _materias[i];
+				_materias[i] = NULL;
+			}
+			if (other._materias[i])
+				_materias[i] = other._materias[i]->clone();
+			i++;
+		}
 	}
 	std::cerr << "Character by the name " << _name
 		<< " was assigned\n";

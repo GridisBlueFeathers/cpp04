@@ -6,7 +6,7 @@
 #    By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 12:13:43 by svereten          #+#    #+#              #
-#    Updated: 2025/05/12 15:21:36 by svereten         ###   ########.fr        #
+#    Updated: 2025/05/12 18:12:24 by svereten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = ex03
@@ -35,11 +35,13 @@ OBJ_DIRS = ${sort ${dir ${OBJS}}}
 
 #TESTS = ${FILES:%=${TEST_DIR}/%}
 TESTS = test/AMateria \
-		test/Character
+		test/Character \
+		test/Cure \
 
 #TEST_OBJS = ${FILES:%=${OBJ_DIR}/test%.o}
 TEST_OBJS = obj/testAMateria.o \
 			obj/testCharacter.o \
+			obj/testCure.o \
 			${filter-out obj/main.o, ${OBJS}}
 
 TEST_DIRS = ${sort ${dir ${TESTS}}}

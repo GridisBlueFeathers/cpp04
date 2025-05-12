@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:17:24 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/12 16:18:22 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:59:40 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Character.hpp"
@@ -96,6 +96,43 @@ TEST(Character, unequip) {
 
 	// Check for nothing happening if index is invalid
 	john.unequip(1000);
+
+	delete m;
+}
+
+TEST(Character, deepCopy) {
+	Character	*john = new Character();
+	Character	bob("Bob");
+	AMateria	*m = new Ice();
+
+	john->equip(m->clone());
+	john->equip(m->clone());
+	john->equip(m->clone());
+	john->equip(m->clone());
+
+	Character	johnCopy(*john);
+
+	delete john;
+
+	// Check for copy still being able to use materia even if original
+	// instance was deleted, and with it all the materias and pointers
+	// were freed as well
+	for (int i = 0; i < 4; i++) {
+		testing::internal::CaptureStdout();
+		johnCopy.use(i, bob);
+		std::string out = testing::internal::GetCapturedStdout();
+		EXPECT_EQ(out, "* shoots an ice bolt at Bob *\n");
+	}
+
+	john = new Character(johnCopy);
+	for (int i = 0; i < 4; i++) {
+		testing::internal::CaptureStdout();
+		john->use(i, bob);
+		std::string out = testing::internal::GetCapturedStdout();
+		EXPECT_EQ(out, "* shoots an ice bolt at Bob *\n");
+	}
+
+	delete john;
 
 	delete m;
 }
