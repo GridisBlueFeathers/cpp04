@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 12:52:50 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/09 16:31:02 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/12 19:27:25 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "MateriaSource.hpp"
@@ -21,14 +21,15 @@ MateriaSource::~MateriaSource() {
 	int	i = 0;
 
 	while (i < 4) {
-		delete _materias[i];
+		if (_materias[i])
+			delete _materias[i];
 		i++;
 	}
 	if (DEBUG)
 		std::cerr << "MateriaSource was destroyed\n";
 }
 
-MateriaSource::MateriaSource(const MateriaSource &materiaSource) {
+MateriaSource::MateriaSource(const MateriaSource &materiaSource): _materias() {
 	deepCopyMaterias(materiaSource);
 	if (DEBUG)
 		std::cerr << "MateriaSource was created (copy)\n";
@@ -73,8 +74,10 @@ void	MateriaSource::deepCopyMaterias(const MateriaSource &materiaSource) {
 	int	i = 0;
 
 	while (i < 4) {
-		delete _materias[i];
-		_materias[i] = NULL;
+		if (_materias[i]) {
+			delete _materias[i];
+			_materias[i] = NULL;
+		}
 		if (materiaSource._materias[i])
 			_materias[i] = materiaSource._materias[i]->clone();
 		i++;

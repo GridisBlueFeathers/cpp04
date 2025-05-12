@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Floor.hpp                                          :+:      :+:    :+:   */
+/*   testFloor.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 18:02:46 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/12 18:52:03 by svereten         ###   ########.fr       */
+/*   Created: 2025/05/12 18:23:21 by svereten          #+#    #+#             */
+/*   Updated: 2025/05/12 18:56:16 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef FLOOR_HPP
-# define FLOOR_HPP
+#include "Floor.hpp"
+#include <gtest/gtest.h>
 
-# include <cstddef>
-
-class AMateria;
-
-class Floor {
-public:
-	Floor();
-	~Floor();
-
-	void	add(AMateria *aMateria);
-
-private:
-	Floor(const Floor &other);
-	Floor	&operator=(const Floor &other);
-
-	AMateria	**_materias;
-	size_t		_size;
-};
-
-#endif // !FLOOR_HPP
+/**
+ * Copy and assignment are private because floor is only supposed to be a part
+ * of AMateria class
+ */
+TEST(Floor, constructor) {
+	Floor floor;
+	Floor noCompileB;
+	//Floor noCompileA(floor);
+	//noCompileB = floor;
+}

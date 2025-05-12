@@ -6,12 +6,16 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 18:06:11 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/12 16:05:23 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/12 18:53:33 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Floor.hpp"
 #include "AMateria.hpp"
+#include <cstdio>
 #include <iostream>
+
+// Public
+//
 
 Floor::Floor(): _materias(), _size(0) {
 	if (DEBUG)
@@ -43,4 +47,18 @@ void	Floor::add(AMateria *aMateria) {
 	delete [] _materias;
 	_materias = res;
 	_size++;
+}
+
+// Private
+//
+
+Floor::Floor(const Floor &other) {
+	(void)other;
+	std::cerr << "You are not supposed to see this\n";
+}
+
+Floor	&Floor::operator=(const Floor &other) {
+	(void)other;
+	std::cerr << "You are not supposed to see this\n";
+	return (*this);
 }
