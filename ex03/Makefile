@@ -6,7 +6,7 @@
 #    By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 12:13:43 by svereten          #+#    #+#              #
-#    Updated: 2025/05/12 19:49:33 by svereten         ###   ########.fr        #
+#    Updated: 2025/05/12 19:51:21 by svereten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -96,6 +96,7 @@ ${TEST_DIRS}:
 clean:
 	rm -rf ${OBJ_DIR}
 	rm -rf compile_commands.json
+	rm -rf .cache
 
 fclean: clean
 	rm -rf ${NAME}
