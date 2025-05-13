@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:02:57 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/07 17:53:18 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/13 10:59:55 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef ANIMAL_HPP
@@ -22,7 +22,7 @@ public:
 
 	std::string		getType() const;
 	void			setType(const std::string &type);
-	virtual void	makeSound() const;
+	virtual void	makeSound() const = 0;
 
 private:
 	std::string	_type;
