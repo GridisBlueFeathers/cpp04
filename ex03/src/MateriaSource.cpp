@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 12:52:50 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/12 19:27:25 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:24:45 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "MateriaSource.hpp"
@@ -21,7 +21,7 @@ MateriaSource::~MateriaSource() {
 	int	i = 0;
 
 	while (i < 4) {
-		if (_materias[i])
+		if (_materias[i] && _materias[i]->getOnHeap())
 			delete _materias[i];
 		i++;
 	}
