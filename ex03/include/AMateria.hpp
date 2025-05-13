@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:18:28 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/12 19:53:42 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:10:37 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef AMATERIA_HPP
@@ -22,7 +22,10 @@ public:
 	AMateria(std::string const &type);
 	virtual ~AMateria();
 
+	void				*operator new(size_t size);
+
 	std::string const	&getType() const;
+	bool				getOnHeap() const;
 	Floor				&getFloor() const;
 
 	virtual AMateria	*clone() const = 0;
@@ -30,6 +33,7 @@ public:
 
 private:
 	std::string		_type;
+	bool			_onHeap;
 	static Floor	_floor;
 
 	AMateria();

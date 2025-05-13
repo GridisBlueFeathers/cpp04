@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 19:01:26 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/12 19:33:30 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:25:16 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <gtest/gtest.h>
@@ -155,4 +155,15 @@ TEST(MateriaSource, deepCopy) {
 
 	delete john;
 	delete bob;
+}
+
+/**
+ * This shouldn't segfault
+ */
+TEST(MateriaSource, passStackByReference) {
+	MateriaSource	src;
+	Ice				ice;
+
+	src.learnMateria(&ice);
+
 }

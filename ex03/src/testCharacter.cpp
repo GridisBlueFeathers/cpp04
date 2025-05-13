@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:17:24 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/12 17:59:40 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:22:20 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Character.hpp"
@@ -102,6 +102,7 @@ TEST(Character, unequip) {
 
 TEST(Character, deepCopy) {
 	Character	*john = new Character();
+	Character	johnAssign;
 	Character	bob("Bob");
 	AMateria	*m = new Ice();
 
@@ -111,6 +112,7 @@ TEST(Character, deepCopy) {
 	john->equip(m->clone());
 
 	Character	johnCopy(*john);
+	johnAssign = *john;
 
 	delete john;
 
@@ -124,26 +126,24 @@ TEST(Character, deepCopy) {
 		EXPECT_EQ(out, "* shoots an ice bolt at Bob *\n");
 	}
 
-	john = new Character(johnCopy);
 	for (int i = 0; i < 4; i++) {
 		testing::internal::CaptureStdout();
-		john->use(i, bob);
+		johnAssign.use(i, bob);
 		std::string out = testing::internal::GetCapturedStdout();
 		EXPECT_EQ(out, "* shoots an ice bolt at Bob *\n");
 	}
-
-	delete john;
 
 	delete m;
 }
 
 /**
  * Tis segfaults for now
+ * Edit: tis doesn't segfault anymore
  */
-// TEST(Character, passingStackByReference) {
-// 	Character	john;
-// 	Ice			ice;
-//
-// 	john.equip(&ice);
-//
-// }
+TEST(Character, passingStackByReference) {
+	Character	john;
+	Ice			ice;
+
+	john.equip(&ice);
+
+}

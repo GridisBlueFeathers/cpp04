@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:46:34 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/12 17:55:38 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:17:20 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Character.hpp"
@@ -23,7 +23,8 @@ Character::~Character() {
 	int	i = 0;
 
 	while (i < 4) {
-		delete _materias[i];
+		if (_materias[i] && _materias[i]->getOnHeap())
+			delete _materias[i];
 		i++;
 	}
 	if (DEBUG)
@@ -65,8 +66,10 @@ Character	&Character::operator=(const Character &other) {
 			i++;
 		}
 	}
-	std::cerr << "Character by the name " << _name
-		<< " was assigned\n";
+	if (DEBUG) {
+		std::cerr << "Character by the name " << _name
+			<< " was assigned\n";
+	}
 	return (*this);
 }
 
@@ -90,7 +93,8 @@ void	Character::equip(AMateria *aMateria) {
 void	Character::unequip(int idx) {
 	if (idx < 0 || idx > 3)
 		return ;
-	_materias[idx]->getFloor().add(_materias[idx]);
+	if (_materias[idx] && _materias[idx]->getOnHeap())
+		_materias[idx]->getFloor().add(_materias[idx]);
 	_materias[idx] = NULL;
 }
 
