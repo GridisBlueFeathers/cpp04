@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:08:38 by svereten          #+#    #+#             */
-/*   Updated: 2025/05/06 13:33:22 by svereten         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:00:34 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Animal.hpp"
@@ -41,8 +41,4 @@ std::string	Animal::getType() const {
 
 void	Animal::setType(const std::string &type) {
 	_type = type;
-}
-
-void	Animal::makeSound() const {
-	std::cout << "*Inidentified certain scientific animal noises*\n";
 }
